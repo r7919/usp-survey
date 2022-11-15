@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div >
+		<img src="../static/images/interface{{ form.interface_id }}.png" class="center">
+	</div>
+	
+ 	<div class="content-section">
+ 		<form method="POST" action="" class="text-info">
+ 			{{ form.hidden_tag() }}
+ 			<fieldset class="form-group">
+ 				<legend class="border-bottom mb-4">Fill Here</legend>
+                 <div class="form-group">
+					{{ form.res1.label(class="form-control-label")}}
+
+					{% if form.res1.errors %}
+						{{ form.res1(class="form-control form-control-lg is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form.res1.errors %}
+							<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+				   {% else %}
+					   {{ form.res1(class="form-control form-control-lg")}}
+				   {% endif %}
+				</div>
+
+                <div class="form-group">
+					{{ form.res2.label(class="form-control-label")}}
+
+					{% if form.res2.errors %}
+						{{ form.res2(class="form-control form-control-lg is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form.res2.errors %}
+							<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+				   {% else %}
+					   {{ form.res2(class="form-control form-control-lg")}}
+				   {% endif %}
+				</div>
+
+                <div class="form-group">
+					{{ form.res3.label(class="form-control-label")}}
+					{% if form.res3.errors %}
+						{{ form.res3(class="form-control form-control-lg is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form.res3.errors %}
+							<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+				   {% else %}
+				   	   {{ form.res3() }}
+				   {% endif %}
+				</div>
+    
+ 			</fieldset>
+ 			<div class="form-group">
+ 				{{form.submit(class="btn btn-info")}}
+ 			</div>
+ 		</form>
+ 	</div>
+
+ {% endblock content %}
