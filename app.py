@@ -34,13 +34,14 @@ def home():
 
 @app.route("/survey", methods=['GET', 'POST'])
 def survey():
-    num_interfaces = 2
+    num_interfaces = 31
     
-    interface_1_id = random.randint(1, num_interfaces)
-    interface_2_id = random.randint(1, num_interfaces)
+    interface_1_id = "{0:05b}".format(random.randint(0, num_interfaces)) 
+    interface_2_id = "{0:05b}".format(random.randint(0, num_interfaces)) 
     while interface_1_id == interface_2_id:
-        interface_2_id = random.randint(2, num_interfaces)
+        interface_2_id = "{0:05b}".format(random.randint(0, num_interfaces)) 
     
+    print(f"IMAGES = {interface_1_id} and {interface_2_id}")
     form = SurveyForm(interface_1_id, interface_2_id)
     
     if form.validate_on_submit():
@@ -58,7 +59,7 @@ def survey():
         return redirect(url_for('home'))
     app.interface_1_id = form.interface_1_id
     app.interface_2_id = form.interface_2_id
-    return render_template('survey.html', form=form)
+    return render_template('survey_new.html', form=form)
 
 
 class Response(db.Model):
@@ -84,8 +85,8 @@ class Response(db.Model):
     interface_2_id = db.Column(db.String, nullable=False)
 class SurveyForm(FlaskForm):
     pre_1 = RadioField("Do you understand what is meant by an IP address ? (An example address might be 192.158.1.38)", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
-    pre_2 = SelectField("Which of the following represents an Operating System(OS) ?", choices=[('google', 'https://Google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], validators=[DataRequired()])
-    pre_3 = SelectField("Which of the following represents a Web browser ?", choices=[('google', 'https://Google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], validators=[DataRequired()])
+    pre_2 = SelectField("Which of the following represents an Operating System(OS) ?", choices=[('google', 'https://Google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], default='none', validators=[DataRequired()])
+    pre_3 = SelectField("Which of the following represents a Web browser ?", choices=[('google', 'https://Google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], default='none', validators=[DataRequired()])
     pre_4 = RadioField("Have you heard about 2-Factor Authentication ?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     pre_5 = RadioField("Have you ever used 2-Factor Authentication ?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     pre_6 = RadioField("Have you ever used password managers ?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
