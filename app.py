@@ -13,8 +13,11 @@ import random
 
 app = Flask(__name__)
 
+DB_URL = os.environ["DATABASE_URL"]
+
 app.config['SECRET_KEY']= '8d2c6184ae40cc9efdefe76c746248dd'
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://localhost/security_survey?user=postgres&password=postgres'
+# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://localhost/security_survey?user=postgres&password=postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 migrate = Migrate(app, db)
