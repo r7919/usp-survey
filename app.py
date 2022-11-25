@@ -7,14 +7,17 @@ from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
+from flask_migrate import Migrate
+
 import random
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY']= '8d2c6184ae40cc9efdefe76c746248dd'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///ishan.db'
-
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://localhost/security_survey?user=postgres&password=postgres'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 
@@ -102,5 +105,5 @@ class SurveyForm(FlaskForm):
         self.interface_2_id = interface_2_id
 
 if __name__ =='__main__':
-    db.create_all()
+    # db.create_all()
     app.run(debug=True, host='0.0.0.0')
