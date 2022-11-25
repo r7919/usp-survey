@@ -1,9 +1,11 @@
 
 {% block content %}
-{% if vamshi == True %}
-Hello World
-{% else %}
-hello underworld
-{% endif %}
+
+Ground yourself :
+<div>
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/8grRcr4Vasw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+</div>
+
+<a class="nav-link btn btn-outline-success text-success" href="{{ url_for('survey') }}">Attempt Survey</a>
 
 {% endblock content %}
