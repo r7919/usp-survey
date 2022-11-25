@@ -14,6 +14,8 @@ import random
 app = Flask(__name__)
 
 DB_URL = os.environ["DATABASE_URL"]
+DB_URL = "postgresql" + DB_URL[8:]
+print(DB_URL)
 
 app.config['SECRET_KEY']= '8d2c6184ae40cc9efdefe76c746248dd'
 # app.config['SQLALCHEMY_DATABASE_URI']='postgresql://localhost/security_survey?user=postgres&password=postgres'
