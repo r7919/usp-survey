@@ -1,11 +1,102 @@
+{% extends 'layout.html' %}
 
 {% block content %}
 
-Ground yourself :
-<div>
-    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/8grRcr4Vasw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+
+<div class="container text-center">
+    <h1 class="text-white">Login Alert Notification Survey</h1>
+    <br>
+    <br>
+    <br>
+    
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h4 class="card-title">Login Alerts</h4>
+          <p class="card-text">For security reasons, you’ll receive an alert from some websites each time you log into your account. This article explains why you have received the alert and the steps to take to protect your account.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h4 class="card-title">What Is a Login Alert?</h4>
+          <p class="card-text">
+            A login alert is a message, generally sent as an email though may be in-app or through SMS, letting you know that someone has logged into your account.  There are two types of alerts:
+            <ul>
+                <li class="card-text">Unknown Device Alert – This indicates that a device that the website did not previously recognize has logged into the account and that a secondary verification was completed via Email, SMS, or by phone.</li>
+                <li class="card-text">Known Device Alert – This is for a device that the website recognizes as having logged in previously and completed verification.</li>
+            </ul>
+          </p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h4 class="card-title">The Purpose of an Alert</h4>
+          <p class="card-text">The alerts are sent to inform you that someone has logged into your account. If you didn’t log in yourself or don’t recognize the login, let us know. We’ll take prompt action to protect your account.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h4 class="card-title">What Triggers an Alert</h4>
+          <p class="card-text">Alerts are automatically sent whenever the website records a login to your account from a known or unknown device. So, if you log in from your usual location but are using a different browser, you’ll receive an Unknown Device alert.</p>
+          <p class="card-text">Using an “incognito” or private browsing window will also trigger an Unknown Device alert.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h4 class="card-title">What You Should Do if You Receive an Alert</h4>
+          <p class="card-text">The location noted in the alert is approximate, so you should check the IP address to see if it’s one that you recognize. You can find your current IP address using lookup tools like <a href="whatismyip.com">whatismyip.com</a>  or <a href="whatsmyip.org">whatsmyip.org</a>.</p>
+          <p class="card-text">Note that some home IP addresses are “dynamic,” meaning you can be assigned a different IP address every time you log in or restart your router or modem.</p>
+          <p class="card-text">
+            <ul>
+                <li class="card-text">If you recognize the IP address and you know that you logged in around the time of the alert, no action is required on your part.</li>
+                <li class="card-text">If you do not recognize the IP address check the following:</li>
+                <ul>
+                    <li class="card-text">Have you provided your login information to anyone else? For example, a family member or a web developer?</li>
+                    <li class="card-text">Do you use a VPN when connecting to the website? If so, it’s likely you are connecting from an IP address that isn’t located near you. VPN IP addresses are usually randomly assigned from a large, widespread pool of servers, which increases the likelihood of receiving login alerts.</li>
+                </ul>
+            </ul>
+          </p>
+          <p class="card-text">If you do not recognize the IP address or location and you have not provided your login information to anyone else, reset your password and contact the website immediately.</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <h4 class="card-title">Survey Instructions</h4>
+          <p class="card-text">During the survey you may come across questions having options as numbers from 1 through 5, one being the least likely and five being most likely, choose the option you think most resembles your opinion.</p>
+          <p class="card-text">Please take your time and answer the questions to the best of your ability.</p>
+          <p class="card-text">Please watch the following pre-survey video before proceeding ahead with the survey:</p>
+        </div>
+    </div>
+</div>
+<div class="container embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/d5y-ilIDLwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
 </div>
 
-<a class="nav-link btn btn-outline-success text-success" href="{{ url_for('survey') }}">Attempt Survey</a>
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+</div>
+<div class="form-group d-flex justify-content-center">
+    <a class="btn btn-success btn-lg" href="{{ url_for('survey') }}">Take Survey</a>
+</div>
+<div class="container">
+    <br>
+    <br>
+    <br>
+</div>
+
 
 {% endblock content %}

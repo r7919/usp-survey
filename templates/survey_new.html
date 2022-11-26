@@ -1,0 +1,342 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="text-white">Survey</h1>
+    </div>
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-body">
+          <div class="container" class="text-white">
+            <ul class="list-group list-group-flush">
+                <form method="POST" action="" class="text-white">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <!-- <legend class="border-bottom mb-4">Survey</legend> -->
+                            <li class="list-group list-group-flush">
+                                <div class="form-group">
+                                    {{ form.pre_1.label(class="form-control-label")}}
+                    
+                                    {% if form.pre_1.errors %}
+                                        {{ form.pre_1(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.pre_1.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                        {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.pre_1 %}
+                                                    <td>{{ subfield() }}  {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.pre_2.label(class="form-control-label")}}
+                    
+                                    {% if form.pre_2.errors %}
+                                        {{ form.pre_2(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.pre_2.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.pre_2()}}
+                                    {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.pre_3.label(class="form-control-label")}}
+                    
+                                    {% if form.pre_3.errors %}
+                                        {{ form.pre_3(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.pre_3.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.pre_3()}}
+                                    {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.pre_4.label(class="form-control-label")}}
+                    
+                                    {% if form.pre_4.errors %}
+                                        {{ form.pre_4(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.pre_4.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.pre_4 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.pre_5.label(class="form-control-label")}}
+                    
+                                    {% if form.pre_5.errors %}
+                                        {{ form.pre_5(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.pre_5.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.pre_5 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.pre_6.label(class="form-control-label")}}
+                    
+                                    {% if form.pre_6.errors %}
+                                        {{ form.pre_6(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.pre_6.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.pre_6 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                            </li>
+                            <li class="list-group list-group-flush">
+                                <h3 class="table text-white">Please look at the interface image below carefully and answer the questions that follow based on your opinion of the same:</h3>
+                                <div>
+                                    <img src="../static/generated-images/f{{ form.interface_1_id }}.png" class="img-fluid width: 100%">
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.post_1.label(class="form-control-label")}}
+                    
+                                    {% if form.post_1.errors %}
+                                        {{ form.post_1(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_1.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_1 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.post_2.label(class="form-control-label")}}
+                    
+                                    {% if form.post_2.errors %}
+                                        {{ form.post_2(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_2.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_2 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.post_3.label(class="form-control-label")}}
+                    
+                                    {% if form.post_3.errors %}
+                                        {{ form.post_3(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_3.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_3 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                          
+                                    {% endif %}
+                                </div>
+                    
+                                <div class="form-group">
+                                    {{ form.post_4.label(class="form-control-label")}}
+                    
+                                    {% if form.post_4.errors %}
+                                        {{ form.post_4(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_4.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_4 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                        {% endif %}
+                                </div>
+                            </li>
+                            <li class="list-group list-group-flush">
+                                <div>
+                                    <h3 class="table text-white">Please look at the interface image below carefully (note that it is different from the one you've seen earlier) and answer the questions that follow based on your opinion of the same:</h3>
+                                    <img src="../static/generated-images/f{{ form.interface_2_id }}.png" class="img-fluid width: 100%">
+                                </div>
+                 
+                                <div class="form-group">
+                                    {{ form.post_5.label(class="form-control-label")}}
+                 
+                                    {% if form.post_5.errors %}
+                                        {{ form.post_5(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_5.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_5 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                       {% endif %}
+                                </div>
+                 
+                                <div class="form-group">
+                                    {{ form.post_6.label(class="form-control-label")}}
+                 
+                                    {% if form.post_6.errors %}
+                                        {{ form.post_6(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_6.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_6 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                       {% endif %}
+                                </div>
+                 
+                                <div class="form-group">
+                                    {{ form.post_7.label(class="form-control-label")}}
+                                    {% if form.post_7.errors %}
+                                        {{ form.post_7(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_7.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_7 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                       {% endif %}
+                                </div>
+                 
+                                <div class="form-group">
+                                    {{ form.post_8.label(class="form-control-label")}}
+                                    {% if form.post_8.errors %}
+                                        {{ form.post_8(class="form-control form-control-lg is-invalid")}}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.post_8.errors %}
+                                            <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <br>
+                                        <table class="table text-white">
+                                            <tr>
+                                            {% for subfield in form.post_8 %}
+                                                    <td>{{ subfield() }} {{ subfield.label() }}</td>
+                                            {% endfor %}  
+                                            </tr>
+                                        </table>
+                                       {% endif %}
+                                </div>
+                                
+                            </li>
+
+                    </fieldset>
+                    <div class="form-group d-flex justify-content-center">
+                        {{form.submit(class="btn btn-success btn-lg")}}
+                    </div>
+                </form>
+            </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <a class="nav-link btn btn-outline-success text-success" href="{{ url_for('survey') }}">Attempt Survey</a>
+<div class="container"></div> -->
+<br>
+{% endblock content %}

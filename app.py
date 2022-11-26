@@ -1,20 +1,25 @@
 import os
-import datetime
-from flask import Flask, render_template, url_for, flash, redirect, request, abort
+from datetime import datetime
+from flask import Flask, render_template, url_for, flash, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField, RadioField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
-from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
+from wtforms import SubmitField, SelectField, RadioField
+from wtforms.validators import DataRequired
+from flask_migrate import Migrate
+
 import random
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY']= '8d2c6184ae40cc9efdefe76c746248dd'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///ishan.db'
+DB_URL = os.environ["DATABASE_URL"]
+DB_URL = "postgresql" + DB_URL[8:]
 
+app.config['SECRET_KEY']= '8d2c6184ae40cc9efdefe76c746248dd'
+# app.config['SQLALCHEMY_DATABASE_URI']='postgresql://localhost/security_survey?user=postgres&password=postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 
@@ -26,13 +31,14 @@ def home():
 
 @app.route("/survey", methods=['GET', 'POST'])
 def survey():
-    num_interfaces = 2
-    
-    interface_1_id = random.randint(1, num_interfaces)
-    interface_2_id = random.randint(1, num_interfaces)
+    num_interfaces = 31
+    random.seed(datetime.now())
+    interface_1_id = "{0:05b}".format(random.randint(0, num_interfaces)) 
+    interface_2_id = "{0:05b}".format(random.randint(0, num_interfaces)) 
     while interface_1_id == interface_2_id:
-        interface_2_id = random.randint(2, num_interfaces)
+        interface_2_id = "{0:05b}".format(random.randint(0, num_interfaces)) 
     
+    print(f"IMAGES = {interface_1_id} and {interface_2_id}")
     form = SurveyForm(interface_1_id, interface_2_id)
     
     if form.validate_on_submit():
@@ -50,7 +56,7 @@ def survey():
         return redirect(url_for('home'))
     app.interface_1_id = form.interface_1_id
     app.interface_2_id = form.interface_2_id
-    return render_template('survey.html', form=form)
+    return render_template('survey_new.html', form=form)
 
 
 class Response(db.Model):
@@ -76,8 +82,8 @@ class Response(db.Model):
     interface_2_id = db.Column(db.String, nullable=False)
 class SurveyForm(FlaskForm):
     pre_1 = RadioField("Do you understand what is meant by an IP address ? (An example address might be 192.158.1.38)", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
-    pre_2 = SelectField("Which of the following represents an Operating System(OS) ?", choices=[('google', 'https://Google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], validators=[DataRequired()])
-    pre_3 = SelectField("Which of the following represents a Web browser ?", choices=[('google', 'https://Google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], validators=[DataRequired()])
+    pre_2 = SelectField("Which of the following represents an Operating System(OS) ?", choices=[('google', 'https://google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], default='none', validators=[DataRequired()])
+    pre_3 = SelectField("Which of the following represents a Web browser ?", choices=[('google', 'https://google.com/'), ('edge', 'Microsoft Edge'), ('windows', 'Microsoft Windows'), ('none', 'None')], default='none', validators=[DataRequired()])
     pre_4 = RadioField("Have you heard about 2-Factor Authentication ?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     pre_5 = RadioField("Have you ever used 2-Factor Authentication ?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     pre_6 = RadioField("Have you ever used password managers ?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
@@ -85,11 +91,11 @@ class SurveyForm(FlaskForm):
     post_1 = RadioField("Have you ever seen this kind of notification before?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     post_2 = RadioField("How likely are you to change your passsword after recieving such a notification?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
     post_3 = RadioField("How likely are you to enable 2-Factor Authentication after recieving such a notification?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
-    post_4 = RadioField("How likely are you to opt out of such noficiations?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
+    post_4 = RadioField("How likely are you to opt out of such notifications?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
     post_5 = RadioField("Have you ever seen this kind of notification before?", choices=[('yes', 'Yes'), ('no', 'No')], validators=[DataRequired()])
     post_6 = RadioField("How likely are you to change your passsword after recieving such a notification?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
     post_7 = RadioField("How likely are you to enable 2-Factor Authentication after recieving such a notification?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
-    post_8 = RadioField("How likely are you to opt out of such noficiations?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
+    post_8 = RadioField("How likely are you to opt out of such notifications?", choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
     
     # res1 = StringField('Q1', validators=[DataRequired()])
     # res2 = SelectField('Q2', choices=[('c1', 'Choice 1'), ('c2', 'Choice2')])
@@ -102,5 +108,5 @@ class SurveyForm(FlaskForm):
         self.interface_2_id = interface_2_id
 
 if __name__ =='__main__':
-    db.create_all()
+    # db.create_all()
     app.run(debug=True, host='0.0.0.0')
